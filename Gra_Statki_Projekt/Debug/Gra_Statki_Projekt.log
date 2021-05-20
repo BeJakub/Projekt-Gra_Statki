@@ -1,0 +1,10 @@
+﻿  Plansza.cpp
+C:\Users\kubab\source\repos\Gra_Statki_Projekt\Gra_Statki_Projekt\Plansza.cpp(160,6): warning C4804: "<": niebezpieczne użycie typu "bool" w operacji
+C:\Users\kubab\source\repos\Gra_Statki_Projekt\Gra_Statki_Projekt\Plansza.cpp(181,6): warning C4804: "<": niebezpieczne użycie typu "bool" w operacji
+C:\Users\kubab\source\repos\Gra_Statki_Projekt\Gra_Statki_Projekt\Plansza.cpp(202,6): warning C4804: "<": niebezpieczne użycie typu "bool" w operacji
+C:\Users\kubab\source\repos\Gra_Statki_Projekt\Gra_Statki_Projekt\Plansza.cpp(211,6): warning C4804: "<": niebezpieczne użycie typu "bool" w operacji
+C:\Users\kubab\source\repos\Gra_Statki_Projekt\Gra_Statki_Projekt\Plansza.cpp(221,6): warning C4804: "<": niebezpieczne użycie typu "bool" w operacji
+C:\Users\kubab\source\repos\Gra_Statki_Projekt\Gra_Statki_Projekt\Plansza.cpp(230,6): warning C4804: "<": niebezpieczne użycie typu "bool" w operacji
+  Statek.cpp
+  Generowanie kodu...
+  Gra_Statki_Projekt.vcxproj -> C:\Users\kubab\source\repos\Gra_Statki_Projekt\Debug\Gra_Statki_Projekt.exe
