@@ -2,6 +2,7 @@
 #include <random>
 #include <time.h>
 #include <iostream>
+#include<cstdlib>
 
 
 #ifndef GRACZ_H
@@ -15,7 +16,7 @@ class Gracz
 
 	string nazwa;
 	int numer_gracza;
-	bool rodzaj_gracza;
+	bool rodzaj_gracza;                     // 1 czlowiek, 0 -komputer
 
 public:
 	Gracz();

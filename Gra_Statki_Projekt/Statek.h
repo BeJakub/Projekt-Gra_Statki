@@ -26,6 +26,7 @@ public:
 	int get_x();
 	int get_y();
 	int get_rozmiar();
+	bool czy_istnieje(int, int);
 };
 
 

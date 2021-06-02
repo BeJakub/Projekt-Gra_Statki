@@ -258,18 +258,47 @@ char Plansza::wartosc_polozenia(int x, int y) {
 	return plansza_gry[y][x];
 }
 
-bool Plansza::Sprawdz_trafienie(int x, int y) {
+bool Plansza::Sprawdz_trafienie(int x, int y,bool rodzaj_gracz) {
 	for(auto i : statki){
 		if (i.sprawdz_trafienie(x, y)) {
 			plansza_gry[y][x] = 'X';
+			odliczanie();
  			if (i.czy_zatopiony()) {
-				cout << "Trafiony... ZATOPIONY!" << endl;
-				
+				if (rodzaj_gracz == 1) {
+					cout << " Trafiony... ZATOPIONY! Aby przejsc dalej wcisnij [ENTER]" << endl;
+				}
+				else {
+					cout << " Przeciwnik zatopil nasz okret! Aby przejsc dalej wcisnij [ENTER]" << endl;
+				}
+				cin.get();
+				system("cls");
+			
+			}
+			else {
+				if (rodzaj_gracz == 1) {
+					cout << " Kapitanie swietny strzal! Trafilismy wroga! Aby przejsc dalej wcisnij [ENTER]" << endl;
+				}
+				else {
+					cout << " Przeciwnik trafil nasz okret! Aby przejsc dalej wcisnij [ENTER]" << endl;
+				}
+				cin.get();
+				system("cls");
 			}
 			return true;
 		}
 	}
+	odliczanie();
 	plansza_gry[y][x] = '#'; //znak spud³owania
+	if (rodzaj_gracz == 1) {
+		cout << " Kapitanie spudlowalismy! Aby przejsc dalej wcisnij [ENTER]" << endl;
+		cin.get();
+		system("cls");
+	}
+	else if(rodzaj_gracz == 0) {
+		cout << " Twoj przeciwnik spudlowal! Aby przejsc dalej wcisnij [ENTER]" << endl;
+		cin.get();
+		system("cls");
+	}
 	return false;
 
 }
@@ -301,4 +330,24 @@ int Plansza::ilosc_trafien() {
 		}
 	}
 	return licznik;
+}
+
+void odliczanie() {
+	system("cls");
+	for (int i = 3; i > 0; --i) {
+		cout << i;
+		Sleep(1000);
+	    system("cls");
+	}
+}
+
+bool Plansza::Sprawdz_zatopienie(int x, int y) {
+	for (auto i : statki) {
+		if (i.czy_istnieje(x, y)) {
+			if (i.czy_zatopiony()) {
+				return true;
+			}
+		}
+	}
+	return false;
 }

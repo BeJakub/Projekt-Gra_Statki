@@ -31,6 +31,19 @@ int Statek::get_rozmiar() {
 bool Statek::czy_zatopiony() {
 	return zatopiony;
 }
+bool Statek::czy_istnieje(int x , int y) {
+	if (pozycja_x == x && pozycja_y == y) {
+		return true;
+	}
+	for(int i =0; i<rozmiar_statku; ++i){ 
+		if (orientacja && pozycja_x + i == x) {
+			return true;
+		}
+		if (!orientacja && pozycja_y + i == y) {
+			return true;
+		}
+	}
+}
 bool Statek::jaka_orientacja() {
 	return orientacja;
 }

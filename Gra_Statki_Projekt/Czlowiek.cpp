@@ -18,7 +18,8 @@ void Czlowiek::Ustaw_plansze(Plansza& p1) {
 				cout << "Podales zle wspolrzedne! Sprobuj ponownie!" << endl;
 		     }
 			cout << "Kapitanie wprowadz wspolrzedne [DUZA LITERA][0-9]dla Twojego statku o rozmiarze " << ROZMIARY_STATKOW[i] << " kratek: ";
-			if (i > 0) { cin.ignore(); }
+			//if (i > 0) { cin.ignore(); }
+			cin.ignore();
 			wejscie = sprawdz_wejscie();
 			x_we = static_cast<int>(wejscie[0]);
 			y_we = static_cast<int>(wejscie[1]);
@@ -26,14 +27,16 @@ void Czlowiek::Ustaw_plansze(Plansza& p1) {
 			cin >> orientacja_we;
 			
 			++licznik;
+			system("cls");
 			
 		} while (!p1.sprawdz_polozenie(x_we-korekta_liter, y_we-korekta_liczb, i, orientacja_we));
 	}
-	cout << "Twoja plansza: " << endl;
-	p1.rysuj_plansze();
+	//cout << "Twoja plansza: " << endl;
+	//p1.rysuj_plansze();
 	
 	return;
 }
+/*
 void Czlowiek::Nastepny_ruch(Plansza &p) {
 	int x_we, y_we, licznik{ 0 };
 	bool poprawnosc = false;
@@ -44,16 +47,47 @@ void Czlowiek::Nastepny_ruch(Plansza &p) {
 		if (licznik > 0) {
 			cout << "Strzal o takich wspolrzednych juz wykonales! Sprobuj ponownie! "<<endl;
 		}
+		cin.ignore();
 		cout << "Kapitanie! Wybierz wspolrzedne strzalu [DUZA LITERA][0-9]: ";
 		wejscie = sprawdz_wejscie();
 		x_we = static_cast<int>(wejscie[0]);
 		y_we = static_cast<int>(wejscie[1]);
 
 		if (p.wartosc_polozenia(x_we - korekta_liter, y_we - korekta_liczb) != 'X' && p.wartosc_polozenia(x_we - korekta_liter, y_we - korekta_liczb) != '#') {
-			p.Sprawdz_trafienie(x_we - korekta_liter, y_we - korekta_liczb);
+			p.Sprawdz_trafienie(x_we - korekta_liter, y_we - korekta_liczb,1);
 			poprawnosc = true;
 		}
 		++licznik;
 	}
+	return;
+}*/
+void Czlowiek::Nastepny_ruch(Plansza& p) {
+	int x_we, y_we, licznik{ 0 };
+	bool poprawnosc = true;
+	bool test = false;
+
+	string wejscie;
+	cin.ignore();
+	do{
+
+		if (licznik>0) {
+			cout << "Strzal o takich wspolrzednych juz wykonales! Sprobuj ponownie! " << endl;
+		}
+			
+		cout << "Kapitanie! Wybierz wspolrzedne strzalu [DUZA LITERA][0-9]: ";
+		wejscie = sprawdz_wejscie();
+		x_we = static_cast<int>(wejscie[0]);
+		y_we = static_cast<int>(wejscie[1]);
+
+		if (p.wartosc_polozenia(x_we - korekta_liter, y_we - korekta_liczb) != 'X' && p.wartosc_polozenia(x_we - korekta_liter, y_we - korekta_liczb) != '#') {
+			test=p.Sprawdz_trafienie(x_we - korekta_liter, y_we - korekta_liczb, 1);
+			if (test) {
+				p.rysuj_plansze_trafien();
+			}
+		}
+		else {
+			++licznik;
+		}
+	} while (test);
 	return;
 }
