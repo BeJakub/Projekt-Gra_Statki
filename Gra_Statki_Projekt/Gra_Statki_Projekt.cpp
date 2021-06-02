@@ -66,8 +66,7 @@ void gra_jednoosobowa() {
 	
 		cout << "Kto ma miec pierwszy ruch?" << endl;
 	cout << "1. TY    /    2. Komputer" << endl;
-	cout << "Wybor: ";
-	cin >> pierwszy_gracz;
+	pierwszy_gracz = sprawdz_int(1, 2);
 	if (pierwszy_gracz == 1) {
 		test = &p1;
 	}
@@ -117,8 +116,7 @@ void gra_dwuosobowa() {
 	cz2.set_nazwa(imie);
 	cout << "Kto ma miec pierwszy ruch?" << endl;
 	cout << "1." << cz1.get_nazwa()<<" / 2. "<<cz2.get_nazwa()<< endl;
-	cout << "Wybor: ";
-	cin >> pierwszy_gracz;
+	pierwszy_gracz = sprawdz_int(1, 2);
 
 	if (pierwszy_gracz == 1) {
 		cz1.Ustaw_plansze(p1);

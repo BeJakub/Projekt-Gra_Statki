@@ -53,5 +53,76 @@ string Gracz::sprawdz_wejscie() {
 
 }
 
+int sprawdz_int(int min, int max)
+{
+	string wejscie;
+	getline(cin, wejscie);
+	bool poprawnosc = false;
+	int licznik = 0;
+	char we_char;
+	bool neg = false;
+	int return_int = 0;
 
+	while (!poprawnosc)
+	{
+		poprawnosc = true;
+		if (licznik > 0)
+		{
+			cout << "Zle podales orientacje, sprobuj ponownie pomiedzy " << min;
+			cout << " i " << max << "." << endl;
+			getline(cin, wejscie);
+		}
+		if (wejscie.length() > 0)
+		{
+
+			for (int i = 0; i < wejscie.length(); i++)
+			{
+				we_char = static_cast<char>(wejscie[i]);
+
+				if (i == 0 & we_char == '-')
+				{
+					neg = true;
+				}
+				else
+				{
+					if (we_char >= 48 && we_char <= 57)
+					{
+						return_int = return_int * 10 + (static_cast<int>(we_char) -
+							48);
+					}
+					else
+					{
+						poprawnosc = false;
+						break;
+					}
+				}
+			}
+		}
+
+		else
+		{
+			poprawnosc = false;
+		}
+
+
+		if (poprawnosc && neg)
+		{
+			return_int = (-1) * return_int;
+		}
+		if (poprawnosc && (return_int<min || return_int>max))
+		{
+			poprawnosc = false;
+		}
+
+		if (!poprawnosc)
+		{
+			return_int = 0;
+			neg = false;
+		}
+
+		licznik++;
+	}
+
+	return return_int;
+}
 

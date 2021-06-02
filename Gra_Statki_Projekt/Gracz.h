@@ -35,6 +35,9 @@ public:
 //korekta na kod ASCII
 const int korekta_liter = 65;                        
 const int korekta_liczb = 48;
+//FUNCKJA POMOCNICZKA
+int sprawdz_int(int, int);
+
 
 
 #endif

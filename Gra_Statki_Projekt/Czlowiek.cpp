@@ -24,7 +24,7 @@ void Czlowiek::Ustaw_plansze(Plansza& p1) {
 			x_we = static_cast<int>(wejscie[0]);
 			y_we = static_cast<int>(wejscie[1]);
 			cout << "Kapitanie wprowadz polozenie naszego statku (1 - poziome polozenie, 0 - pionowe polozenie: ";
-			cin >> orientacja_we;
+			orientacja_we=sprawdz_int(0,1);
 			
 			++licznik;
 			system("cls");
