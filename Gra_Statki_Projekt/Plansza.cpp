@@ -146,7 +146,7 @@ bool Plansza::sprawdz_polozenie(int x, int y, int numer_statku, bool orientacja)
 	}
 	else if (x == WYMIAR_PLANSZY - 1 && (y + r == WYMIAR_PLANSZY)) {
 		if (!orientacja) {
-			for (int k = y - 1; k < (y + r + 1); ++k) {
+			for (int k = y - 1; k < (y + r ); ++k) {
 				for (int j = x - 1; j < (x + 1); ++j) {
 					if (plansza_gry[k][j] != WODA) {
 						return false;
@@ -343,7 +343,7 @@ void odliczanie() {
 
 bool Plansza::Sprawdz_zatopienie(int x, int y) {
 	for (auto i : statki) {
-		if (i.czy_istnieje(x, y)) {
+		if (i.sprawdz_trafienie(x,y)) {
 			if (i.czy_zatopiony()) {
 				return true;
 			}

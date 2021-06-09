@@ -52,20 +52,23 @@ int main()
 		{
 			exit(0);
 		}
-
+		default:
+			exit(0);
 		}
 }
 void gra_jednoosobowa() {
 	int pierwszy_gracz;
 	string wejscie, imie;
 	Czlowiek cz1;
-	Komputer k1;
+	Komputer k1(false, 0);
 	Plansza p1, p2;
 	Plansza * test;
 	
-	
-		cout << "Kto ma miec pierwszy ruch?" << endl;
+	system("cls");
+	cin.ignore();
+    cout << "Kto ma miec pierwszy ruch?" << endl;
 	cout << "1. TY    /    2. Komputer" << endl;
+	cout << "Wybor: ";
 	pierwszy_gracz = sprawdz_int(1, 2);
 	if (pierwszy_gracz == 1) {
 		test = &p1;
@@ -79,13 +82,13 @@ void gra_jednoosobowa() {
 	cout << "Podaj nazwe Twojego przeciwnika: ";
 	cin >> imie;
 	k1.set_nazwa(imie);
-	cz1.Ustaw_plansze(p1);
+	cz1.Ustaw_plansze(p1, cz1.get_nazwa());
 	k1.Ustaw_plansze_auto(p2, 0);
 	while (stan_gry(p1, p2) == ROZGRYWKA_TRWA) {
-		cout << "TWOJA PLANSZA: " << endl;
+		cout << cz1.get_nazwa()<< "TWOJA PLANSZA: " << endl;
 		p1.rysuj_plansze();
 		cout << "\n";
-		cout << "PLANSZA TWOJEGO PRZECIWNIKA:" << endl;
+		cout << "PLANSZA TWOJEGO PRZECIWNIKA "<< k1.get_nazwa()<< ":" << endl;
 		p2.rysuj_plansze_trafien();
 		cout << "\n";
 		cz1.Nastepny_ruch(p2);
@@ -108,23 +111,27 @@ void gra_dwuosobowa() {
 	Plansza p1, p2;
 	Plansza* test;
 
+	system("cls");
 	cout << "Podaj nazwe gracza nr 1: ";
 	cin >> imie;
 	cz1.set_nazwa(imie);
 	cout << "Podaj nazwe gracza nr 2: ";
 	cin >> imie;
 	cz2.set_nazwa(imie);
+	system("cls");
+	cin.ignore();
 	cout << "Kto ma miec pierwszy ruch?" << endl;
 	cout << "1." << cz1.get_nazwa()<<" / 2. "<<cz2.get_nazwa()<< endl;
+	cout << "Wybor: ";
 	pierwszy_gracz = sprawdz_int(1, 2);
-
+	system("cls");
 	if (pierwszy_gracz == 1) {
-		cz1.Ustaw_plansze(p1);
-		cz2.Ustaw_plansze(p2);
+		cz1.Ustaw_plansze(p1, cz1.get_nazwa());
+		cz2.Ustaw_plansze(p2, cz2.get_nazwa());
 	}
 	else {  
-		cz2.Ustaw_plansze(p2);
-		cz1.Ustaw_plansze(p1);
+		cz2.Ustaw_plansze(p2, cz2.get_nazwa());
+		cz1.Ustaw_plansze(p1, cz1.get_nazwa());
 	}
 	if (pierwszy_gracz == 1) {
 		while (stan_gry(p1, p2) == ROZGRYWKA_TRWA) {
@@ -137,9 +144,9 @@ void gra_dwuosobowa() {
 			cz1.Nastepny_ruch(p2);
 
 			system("cls");
-			cout << "ZAMIANA GRACZY! Za 5 sekund pojawi sie plansza gracza nr 2"<<endl;
+			cout << "ZAMIANA GRACZY! Za 3 sekund pojawi sie plansza gracza nr 2"<<endl;
 			Sleep(3000);
-			for (int i = 5; i > 0; --i) {
+			for (int i = 3; i > 0; --i) {
 				cout << i;
 				Sleep(1000);
 				system("cls");
@@ -159,7 +166,11 @@ void gra_dwuosobowa() {
 				Sleep(1000);
 				system("cls");
 			}
-
+			if (stan_gry(p1, p2) == G1_WIN) {
+				cout << cz1.get_nazwa() << " wygral!" << endl;
+			}
+			else
+				cout << cz2.get_nazwa() << " wygral!" << endl;
 		}
 	}
 	else {
@@ -195,6 +206,11 @@ void gra_dwuosobowa() {
 				Sleep(1000);
 				system("cls");
 			}
+			if (stan_gry(p1, p2) == G1_WIN) {
+				cout << cz1.get_nazwa() << " wygral!" << endl;
+			}
+			else
+				cout << cz2.get_nazwa() << " wygral!" << endl;
 
 		}
 	}

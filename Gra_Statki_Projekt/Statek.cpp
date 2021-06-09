@@ -43,6 +43,7 @@ bool Statek::czy_istnieje(int x , int y) {
 			return true;
 		}
 	}
+	return false;
 }
 bool Statek::jaka_orientacja() {
 	return orientacja;

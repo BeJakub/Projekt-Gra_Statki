@@ -55,6 +55,7 @@ string Gracz::sprawdz_wejscie() {
 
 int sprawdz_int(int min, int max)
 {
+	//cin.ignore();
 	string wejscie;
 	getline(cin, wejscie);
 	bool poprawnosc = false;
@@ -68,13 +69,13 @@ int sprawdz_int(int min, int max)
 		poprawnosc = true;
 		if (licznik > 0)
 		{
-			cout << "Zle podales orientacje, sprobuj ponownie pomiedzy " << min;
-			cout << " i " << max << "." << endl;
+			cout << "Podales zle dane, sprobuj ponownie pomiedzy " << min;
+			cout << " i " << max << ": ";
 			getline(cin, wejscie);
 		}
 		if (wejscie.length() > 0)
 		{
-
+			// przetwórz ci¹g znaków, znak po znaku, aby sprawdziæ, czy jest to liczba
 			for (int i = 0; i < wejscie.length(); i++)
 			{
 				we_char = static_cast<char>(wejscie[i]);
@@ -83,6 +84,7 @@ int sprawdz_int(int min, int max)
 				{
 					neg = true;
 				}
+				// jeœli char jest liczb¹, zamien ja liczbê ca³kowit¹
 				else
 				{
 					if (we_char >= 48 && we_char <= 57)
@@ -122,7 +124,7 @@ int sprawdz_int(int min, int max)
 
 		licznik++;
 	}
-
+	
 	return return_int;
 }
 
